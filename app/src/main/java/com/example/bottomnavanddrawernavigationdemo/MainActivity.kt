@@ -7,7 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.bottomnavanddrawernavigationdemo.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        /*binding.navView.setNavigationItemSelectedListener { menuItem ->
+        binding.navView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             binding.drawerLayout.closeDrawers()
 
@@ -44,8 +46,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }*/
+        }
 
+        // Find reference to bottom navigation view
+        val navView: BottomNavigationView = binding.bottomNavView
+        // Hook your navigation controller to bottom navigation view
+        navView.setupWithNavController(navController)
 
     }
 
